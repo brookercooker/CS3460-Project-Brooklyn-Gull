@@ -21,7 +21,7 @@ Brooklyn Gull (Team Leader)
    ```
 3. Once the build completes successfully, run the compiled binary directly from the command line:
     ```bash
-    ./build/my_project
+    ./build/system_observability_monitor
     ```
 
 ---
