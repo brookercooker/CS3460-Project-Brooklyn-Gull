@@ -1,3 +1,13 @@
+# System Observability Monitor
+
+CS3460 - Fall 2026
+
+Brooklyn Gull (Team Leader)
+
+* **A-Number:** A02392549
+
+* **USU Email:** A02392549@usu.edu
+---
 
 ## Build and Run Instructions
 
