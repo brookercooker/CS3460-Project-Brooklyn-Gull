@@ -11,10 +11,13 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Collectors and reporter live in a library, separate from main.cpp.
-# Later milestones add CpuCollector, filter/sort, etc. here.
+# Add new .cpp files to this list as the project grows.
 add_library(monitor_core
+    src/CpuCollector.cpp
     src/MemoryCollector.cpp
+    src/Monitor.cpp
     src/ProcessCollector.cpp
+    src/ProcessSorter.cpp
     src/Reporter.cpp
 )
 target_include_directories(monitor_core PUBLIC include)
