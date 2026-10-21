@@ -1,22 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Builds the entire project with Clang and CMake.
+# Usage: ./build.sh
+set -euo pipefail
 
-# Exit immediately if any command fails
-set -e
+# Always run from the repository root, even if called from elsewhere.
+cd "$(dirname "$0")"
 
-# Define build directory
-BUILD_DIR="build"
+if ! command -v clang++ >/dev/null 2>&1; then
+    echo "error: clang++ not found. Install Clang (e.g. sudo apt install clang)." >&2
+    exit 1
+fi
 
-echo "Creating build directory..."
-mkdir -p $BUILD_DIR
+cmake -S . -B build \
+    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_BUILD_TYPE=Debug
 
-echo "Configuring project with CMake using Clang..."
-# Explicitly sets Clang as the compiler for C++20 compliance
-cmake -S . -B $BUILD_DIR \
-      -DCMAKE_C_COMPILER=clang \
-      -DCMAKE_CXX_COMPILER=clang++ \
-      -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j
 
-echo "Building project..."
-cmake --build $BUILD_DIR --config Release
-
-echo "Build complete. Executable located in the '$BUILD_DIR' directory."
+echo
+echo "Build succeeded. Run with: ./build/system_observability_monitor"
